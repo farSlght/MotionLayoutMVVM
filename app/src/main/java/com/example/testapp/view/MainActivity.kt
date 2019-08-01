@@ -1,12 +1,11 @@
 package com.example.testapp.view
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import com.example.testapp.R
 import com.example.testapp.utils.extensions.nonNullObserve
 import com.example.testapp.viewModel.main.MainViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_dailyplan.*
+import kotlinx.android.synthetic.main.page_dailyplan.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
@@ -18,13 +17,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.apply {
-            adapter = SimpleAdapter(items)
-            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
-        }
+//        recyclerView.apply {
+//            adapter = SimpleAdapter(items)
+//            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
+//        }
 
-//        vm.fullName.nonNullObserve(this) { fullname.text = it }
-//        vm.email.nonNullObserve(this) { email.text = it }
+        vm.date.nonNullObserve(this) { tv_day.text = it }
+        vm.plan.nonNullObserve(this) { tv_dailyplan.text = it }
         vm.load()
     }
 }

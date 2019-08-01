@@ -2,7 +2,7 @@ package com.example.testapp.viewModel.main
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.testapp.domain.interfaces.ISetupInteractor
-import com.example.testapp.domain.model.Profile
+import com.example.testapp.domain.model.Plan
 import com.example.testapp.system.ISchedulers
 import com.example.testapp.viewModel.BaseViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -15,22 +15,22 @@ class MainViewModel(
         private val interactor: ISetupInteractor
 ) : BaseViewModel(router, schedulers) {
 
-    val fullName = MutableLiveData<String>()
-    val email = MutableLiveData<String>()
+    val date = MutableLiveData<String>()
+    val plan = MutableLiveData<String>()
 
     private val cd = CompositeDisposable()
 
     fun load(){
         interactor.doSetup()
                 .toSingle { Unit }
-                .flatMap{ interactor.loadProfile() }
+                .flatMap{ interactor.loadPlan() }
                 .manageSchedulers()
-                .subscribe (::handleProfile, ::handleError)
+                .subscribe (::handlePlan, ::handleError)
                 .addTo(cd)
     }
 
-    private fun handleProfile(profile: Profile) {
-        fullName.value = profile.name
-        email.value = profile.email
+    private fun handlePlan(Plan: Plan) {
+        date.value = Plan.date
+        plan.value = Plan.plan
     }
 }

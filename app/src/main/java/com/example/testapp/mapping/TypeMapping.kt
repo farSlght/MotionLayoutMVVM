@@ -1,6 +1,6 @@
 package com.example.testapp.mapping
 
-import com.example.testapp.repository.model.Profile
+import com.example.testapp.repository.model.Plan
 
-fun Profile.toDomainModel(): com.example.testapp.domain.model.Profile =
-        com.example.testapp.domain.model.Profile("$firstName $lastName", email)
+fun Plan.toDomainModel(): com.example.testapp.domain.model.Plan =
+        com.example.testapp.domain.model.Plan("$firstName $lastName", email)

@@ -1,3 +1,3 @@
 package com.example.testapp.domain.model
 
-data class Profile(val name: String, val email: String)
+data class Plan(val date: String, val plan: String)

@@ -4,9 +4,9 @@ import com.example.testapp.domain.implementations.SetupInteractor
 import com.example.testapp.domain.interfaces.ISetupInteractor
 import com.example.testapp.network.ApiClient
 import com.example.testapp.repository.implementations.AuthRepository
-import com.example.testapp.repository.implementations.ProfileRepository
+import com.example.testapp.repository.implementations.PlanRepository
 import com.example.testapp.repository.interfaces.IAuthRepository
-import com.example.testapp.repository.interfaces.IProfileRepository
+import com.example.testapp.repository.interfaces.IPlanRepository
 import com.example.testapp.system.AppSchedulers
 import com.example.testapp.system.ISchedulers
 import com.example.testapp.viewModel.main.MainViewModel
@@ -27,7 +27,7 @@ val appModule = module {
 
     //repositories
     single<IAuthRepository> { AuthRepository() }
-    single<IProfileRepository> { ProfileRepository(get()) }
+    single<IPlanRepository> { PlanRepository(get()) }
 
     //network
     single { ApiClient.getLogginInterceptor() }
