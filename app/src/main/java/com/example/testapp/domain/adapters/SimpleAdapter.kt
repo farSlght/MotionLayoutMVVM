@@ -1,4 +1,4 @@
-package com.example.testapp.view
+package com.example.testapp.domain.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

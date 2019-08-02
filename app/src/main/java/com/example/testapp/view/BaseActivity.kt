@@ -1,5 +1,7 @@
 package com.example.testapp.view
 
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import com.example.testapp.R
 import org.koin.android.ext.android.inject
@@ -14,7 +16,6 @@ abstract class BaseActivity : AppCompatActivity(){
     protected val navigator = object : SupportAppNavigator(this,
             R.id.container
     ) {
-
         var lastNavigationEvent = Date().time
 
         override fun fragmentForward(command: Forward?) {
@@ -25,6 +26,11 @@ abstract class BaseActivity : AppCompatActivity(){
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        listenToVm()
+        listenToUi()
+    }
     override fun onResumeFragments() {
         super.onResumeFragments()
         navigatorHolder.setNavigator(navigator)
@@ -34,4 +40,7 @@ abstract class BaseActivity : AppCompatActivity(){
         navigatorHolder.removeNavigator()
         super.onPause()
     }
+
+    abstract fun listenToVm()
+    abstract fun listenToUi()
 }

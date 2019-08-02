@@ -6,5 +6,5 @@ import io.reactivex.Single
 
 interface ISetupInteractor {
     fun doSetup(): Completable
-    fun loadPlan(): Single<Plan>
+    fun loadPlan(): Single<List<Plan>>
 }

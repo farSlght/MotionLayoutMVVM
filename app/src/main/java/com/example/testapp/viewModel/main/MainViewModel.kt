@@ -15,8 +15,7 @@ class MainViewModel(
         private val interactor: ISetupInteractor
 ) : BaseViewModel(router, schedulers) {
 
-    val date = MutableLiveData<String>()
-    val plan = MutableLiveData<String>()
+    val plans = MutableLiveData<List<Plan>>()
 
     private val cd = CompositeDisposable()
 
@@ -25,12 +24,7 @@ class MainViewModel(
                 .toSingle { Unit }
                 .flatMap{ interactor.loadPlan() }
                 .manageSchedulers()
-                .subscribe (::handlePlan, ::handleError)
+                .subscribe ({ plans.value = it }, ::handleError)
                 .addTo(cd)
-    }
-
-    private fun handlePlan(Plan: Plan) {
-        date.value = Plan.date
-        plan.value = Plan.plan
     }
 }
